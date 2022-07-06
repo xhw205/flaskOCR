@@ -1,0 +1,38 @@
+<!doctype html>
+<title>OCR</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<h2 style="margin-left:45% ;color:#0064ff">PaddleOCR</h2>
+<div style="margin-left:45%">
+		{% with messages = get_flashed_messages() %}
+		  {% if messages %}
+			<ul>
+			{% for message in messages %}
+			  <li>{{ message }}</li>
+			{% endfor %}
+			</ul>
+		  {% endif %}
+		{% endwith %}
+	{% if filename %}
+	<div>
+		<img src="{{url_for('display_image', filename=filename)}}" width="350px" height="400px" style="margin-left:-350px">
+	</div>
+	<div style="margin-top:-380px ;margin-left:48px">
+		{%- for row in dict.items()|batch(3) %}
+			{%- for key,value in row %}
+			<textarea cols="50" rows="10" >{{ value }}</textarea>
+			{%- endfor %}
+		{%- endfor %}
+		{% endif %}
+
+	<form method="post" action="/" enctype="multipart/form-data">
+		<dl>
+			<p>
+				<input type="file" name="file" autocomplete="off" required>
+			</p>
+		</dl>
+		<p>
+			<input type="submit" value="upload" class="btn btn-outline-success" >
+		</p>
+	</form>
+	</diV>
+</div>
